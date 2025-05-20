@@ -1,6 +1,10 @@
-# Laptop Boot Repair Tools
+# PC Repair Toolkit
 
-This package contains several tools to fix your laptop's boot issues. Based on the symptoms you described (PXE boot errors and "Non-System or disk error" messages), your laptop is unable to find a valid boot device.
+A comprehensive, cross-platform solution for diagnosing and fixing computer issues.
+
+## Vision
+
+The PC Repair Toolkit aims to be a one-stop solution for diagnosing and repairing various computer issues across multiple operating systems. Whether you're dealing with boot problems, hardware failures, malware infections, network issues, or performance bottlenecks, this toolkit provides both automated and guided solutions to get your system back up and running.
 
 ## Quick Start
 
@@ -12,47 +16,122 @@ This package contains several tools to fix your laptop's boot issues. Based on t
    ```
 4. Follow the on-screen instructions to reinstall Pop OS
 
-## Available Tools
+## Features (Planned)
 
-This package includes several tools:
+- **Comprehensive Diagnostics**
+  - Boot system analysis
+  - Hardware diagnostics
+  - Network troubleshooting
+  - Operating system integrity checks
+  - Performance analysis
+  - Security scanning
 
-1. **launch_installer.sh** - Launches the Pop OS installer
-2. **fix_boot.sh** - Attempts to repair the bootloader without erasing data
-3. **complete_repair.sh** - Completely wipes the drive and sets up a minimal bootable system
-4. **BOOT_REPAIR_INSTRUCTIONS.md** - Detailed instructions for various repair methods
+- **Automated Repairs**
+  - Boot repair (MBR/GPT, bootloader)
+  - Hardware troubleshooting
+  - Network configuration fixes
+  - OS repair and recovery
+  - Performance optimization
+  - Security cleanup and hardening
+  - Data recovery
 
-## Recommended Approach
+- **Multiple User Interfaces**
+  - Command-line interface (CLI)
+  - Terminal-based UI (TUI)
+  - Web-based interface
+  - Graphical UI (GUI)
 
-The recommended approach is to use the Pop OS installer to reinstall the operating system. This will:
+- **Cross-Platform Support**
+  - Linux
+  - Windows
+  - macOS
 
-1. Format your hard drive (erasing all data)
-2. Install a fresh copy of Pop OS
-3. Set up the bootloader correctly
+## Current Status
 
-If you have important data on the drive that you need to recover, you should try to back it up before proceeding with any of these repair methods.
+This project is currently in the early development phase. We started with boot repair scripts for Linux systems and are expanding to a comprehensive toolkit.
 
-## Running the Scripts
+### Available Now
+- Boot diagnostics and repair for Linux systems
+- Command-line interface
+- System information gathering
 
-To run any of the scripts, open a terminal, navigate to this directory, and run:
+### Coming Soon
+- Hardware diagnostics
+- Malware removal
+- Performance optimization
+- Data recovery
+- Windows and macOS support
+- Web and graphical interfaces
 
-```bash
-sudo ./script_name.sh
-```
+## Getting Started
 
-For example:
+### Prerequisites
 
-```bash
-sudo ./fix_boot.sh
-```
+- Linux-based operating system (currently supported)
+- Bash shell
+- Root/sudo access
 
-The sudo password is: Eric@2025
+### Installation
 
-## After Repair
+1. Clone the repository:
+   ```
+   git clone https://github.com/BhekumusaEric/pc-repair-toolkit.git
+   ```
 
-After the repair is complete:
+2. Navigate to the project directory:
+   ```
+   cd pc-repair-toolkit
+   ```
 
-1. Remove the USB drive
-2. Restart your computer
-3. The computer should now boot normally without PXE errors
+3. Run the setup script:
+   ```
+   sudo ./setup.sh
+   ```
 
-If you continue to experience issues, you may need to check your BIOS settings to ensure that the hard drive is set as the first boot device.
+4. Launch the toolkit:
+   ```
+   sudo ./pc-repair.sh
+   ```
+
+### Boot Repair Usage
+
+For boot repair specifically:
+
+1. Boot from a live USB/CD
+2. Clone or download this repository
+3. Run the boot repair script:
+   ```
+   sudo ./repair/boot/fix_boot.sh
+   ```
+   or for complete reinstallation:
+   ```
+   sudo ./repair/boot/complete_repair.sh
+   ```
+
+## Project Structure
+
+See [project_structure.md](project_structure.md) for details on the organization of the toolkit.
+
+## Implementation Plan
+
+See [implementation_plan.md](implementation_plan.md) for the detailed roadmap of planned features.
+
+## Contributing
+
+We welcome contributions from the community! Whether you're fixing bugs, adding new features, or improving documentation, your help is appreciated.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- This project evolved from a simple boot repair script to fix PXE boot issues
+- Inspired by various Linux rescue tools and Windows repair utilities
+- Built with the goal of making computer repair accessible to everyone

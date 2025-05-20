@@ -1,11 +1,16 @@
 #!/bin/bash
 
 # PC Repair Toolkit - Main Script
-# A comprehensive solution for diagnosing and fixing computer issues
+# A comprehensive solution for diagnosing and fixing computer issues across all platforms
 # https://github.com/BhekumusaEric/pc-repair-toolkit
 
 # Version
-VERSION="0.1.0"
+VERSION="0.2.0"
+
+# Description: This toolkit provides a comprehensive set of tools for diagnosing and
+# repairing various computer issues across Windows, macOS, and Linux platforms.
+# It addresses boot problems, hardware failures, malware infections, performance issues,
+# network connectivity problems, and more.
 
 # Colors for output
 RED='\033[0;31m'
@@ -80,7 +85,7 @@ detect_os() {
         OS=$(uname -s)
         VER=$(uname -r)
     fi
-    
+
     echo -e "${GREEN}Detected OS:${NC} $OS $VER"
     log "Detected OS: $OS $VER"
 }
@@ -88,24 +93,24 @@ detect_os() {
 # Function to gather system information
 gather_system_info() {
     echo -e "${BLUE}Gathering system information...${NC}"
-    
+
     # CPU info
     CPU_INFO=$(grep "model name" /proc/cpuinfo | head -n 1 | cut -d ':' -f 2 | sed 's/^[ \t]*//')
     CPU_CORES=$(grep -c "processor" /proc/cpuinfo)
     echo -e "${GREEN}CPU:${NC} $CPU_INFO ($CPU_CORES cores)"
-    
+
     # Memory info
     MEM_TOTAL=$(free -h | grep "Mem:" | awk '{print $2}')
     echo -e "${GREEN}Memory:${NC} $MEM_TOTAL"
-    
+
     # Disk info
     echo -e "${GREEN}Disk Information:${NC}"
     lsblk -o NAME,SIZE,FSTYPE,MOUNTPOINT | grep -v "loop" | sed 's/^/  /'
-    
+
     # Network info
     echo -e "${GREEN}Network Interfaces:${NC}"
     ip -o addr show | grep -v "lo" | awk '{print "  " $2 ": " $4}' | cut -d '/' -f 1
-    
+
     log "System information gathered"
 }
 
@@ -116,16 +121,21 @@ display_main_menu() {
     echo -e "${BLUE}============================================================${NC}"
     echo -e "  ${YELLOW}1.${NC} Run Full System Diagnostics"
     echo -e "  ${YELLOW}2.${NC} Boot Diagnostics and Repair"
-    echo -e "  ${YELLOW}3.${NC} Hardware Diagnostics"
+    echo -e "  ${YELLOW}3.${NC} Hardware Diagnostics and Repair"
     echo -e "  ${YELLOW}4.${NC} Network Diagnostics and Repair"
     echo -e "  ${YELLOW}5.${NC} OS Diagnostics and Repair"
     echo -e "  ${YELLOW}6.${NC} Performance Optimization"
-    echo -e "  ${YELLOW}7.${NC} Security Scan and Fixes"
-    echo -e "  ${YELLOW}8.${NC} System Information"
-    echo -e "  ${YELLOW}9.${NC} Help"
+    echo -e "  ${YELLOW}7.${NC} Security and Malware Removal"
+    echo -e "  ${YELLOW}8.${NC} Data Recovery and Backup"
+    echo -e "  ${YELLOW}9.${NC} Application Troubleshooting"
+    echo -e "  ${YELLOW}10.${NC} Mac-Specific Tools"
+    echo -e "  ${YELLOW}11.${NC} Windows-Specific Tools"
+    echo -e "  ${YELLOW}12.${NC} Linux-Specific Tools"
+    echo -e "  ${YELLOW}13.${NC} System Information"
+    echo -e "  ${YELLOW}14.${NC} Help and Documentation"
     echo -e "  ${YELLOW}0.${NC} Exit"
     echo -e "${BLUE}============================================================${NC}"
-    echo -e "Enter your choice [0-9]: "
+    echo -e "Enter your choice [0-14]: "
 }
 
 # Function to handle boot diagnostics and repair
@@ -133,14 +143,14 @@ boot_diagnostics_repair() {
     echo -e "${BLUE}============================================================${NC}"
     echo -e "${CYAN}               BOOT DIAGNOSTICS AND REPAIR                  ${NC}"
     echo -e "${BLUE}============================================================${NC}"
-    
+
     # Check if we're running from a live USB/CD
     if mount | grep -q "cdrom"; then
         echo -e "${GREEN}Running from live media. Good!${NC}"
     else
         echo -e "${YELLOW}Warning: Not running from live media. Some repair options may not be available.${NC}"
     fi
-    
+
     # Boot menu
     echo -e "  ${YELLOW}1.${NC} Check Boot Configuration"
     echo -e "  ${YELLOW}2.${NC} Repair Bootloader (GRUB)"
@@ -149,9 +159,9 @@ boot_diagnostics_repair() {
     echo -e "  ${YELLOW}5.${NC} Back to Main Menu"
     echo -e "${BLUE}============================================================${NC}"
     echo -e "Enter your choice [1-5]: "
-    
+
     read -r boot_choice
-    
+
     case $boot_choice in
         1)
             echo -e "${BLUE}Checking boot configuration...${NC}"
@@ -190,11 +200,11 @@ main() {
     display_banner
     detect_os
     gather_system_info
-    
+
     while true; do
         display_main_menu
         read -r choice
-        
+
         case $choice in
             1)
                 echo -e "${BLUE}Running full system diagnostics...${NC}"
@@ -209,7 +219,7 @@ main() {
                 echo -e "${BLUE}Running hardware diagnostics...${NC}"
                 # Call to hardware diagnostics script
                 # source "${SCRIPT_DIR}/diagnostics/hardware/hardware_diagnostics.sh"
-                echo -e "${YELLOW}This feature is under development.${NC}"
+                echo -e "${YELLOW}This feature is under development. See hardware_diagnostics_spec.md for details.${NC}"
                 ;;
             4)
                 echo -e "${BLUE}Running network diagnostics...${NC}"
@@ -230,19 +240,51 @@ main() {
                 echo -e "${YELLOW}This feature is under development.${NC}"
                 ;;
             7)
-                echo -e "${BLUE}Running security scan...${NC}"
+                echo -e "${BLUE}Running security scan and malware removal...${NC}"
                 # Call to security scan script
                 # source "${SCRIPT_DIR}/diagnostics/security/security_scan.sh"
-                echo -e "${YELLOW}This feature is under development.${NC}"
+                echo -e "${YELLOW}This feature is under development. See malware_removal_spec.md for details.${NC}"
                 ;;
             8)
-                gather_system_info
+                echo -e "${BLUE}Running data recovery and backup tools...${NC}"
+                # Call to data recovery script
+                # source "${SCRIPT_DIR}/repair/data/data_recovery.sh"
+                echo -e "${YELLOW}This feature is under development.${NC}"
                 ;;
             9)
-                echo -e "${BLUE}Displaying help...${NC}"
+                echo -e "${BLUE}Running application troubleshooting...${NC}"
+                # Call to application troubleshooting script
+                # source "${SCRIPT_DIR}/repair/applications/app_troubleshooting.sh"
+                echo -e "${YELLOW}This feature is under development.${NC}"
+                ;;
+            10)
+                echo -e "${BLUE}Running Mac-specific tools...${NC}"
+                # Call to Mac-specific tools script
+                # source "${SCRIPT_DIR}/platforms/mac/mac_tools.sh"
+                echo -e "${YELLOW}This feature is under development.${NC}"
+                ;;
+            11)
+                echo -e "${BLUE}Running Windows-specific tools...${NC}"
+                # Call to Windows-specific tools script
+                # source "${SCRIPT_DIR}/platforms/windows/windows_tools.sh"
+                echo -e "${YELLOW}This feature is under development.${NC}"
+                ;;
+            12)
+                echo -e "${BLUE}Running Linux-specific tools...${NC}"
+                # Call to Linux-specific tools script
+                # source "${SCRIPT_DIR}/platforms/linux/linux_tools.sh"
+                echo -e "${YELLOW}This feature is under development.${NC}"
+                ;;
+            13)
+                gather_system_info
+                ;;
+            14)
+                echo -e "${BLUE}Displaying help and documentation...${NC}"
                 # Display help information
                 echo -e "${CYAN}PC Repair Toolkit Help${NC}"
-                echo -e "This toolkit helps diagnose and fix various computer issues."
+                echo -e "This toolkit helps diagnose and fix various computer issues across all platforms."
+                echo -e "It provides tools for boot repair, hardware diagnostics, malware removal,"
+                echo -e "performance optimization, data recovery, and more."
                 echo -e "For more information, visit: https://github.com/BhekumusaEric/pc-repair-toolkit"
                 ;;
             0)
@@ -253,7 +295,7 @@ main() {
                 echo -e "${RED}Invalid choice. Please try again.${NC}"
                 ;;
         esac
-        
+
         echo ""
         echo -e "${YELLOW}Press Enter to continue...${NC}"
         read -r
