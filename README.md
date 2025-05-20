@@ -43,6 +43,15 @@ The PC Repair Toolkit aims to be a one-stop solution for diagnosing and repairin
   - Mac-specific tools for complete system wipe and recovery
   - T2/Apple Silicon security chip handling
 
+- **Advanced Recovery**
+  - System access recovery for locked devices
+  - Password reset for Windows, Linux, and Mac
+  - BIOS/UEFI password bypass
+  - Secure Boot configuration
+  - Disk encryption recovery
+  - Extreme data recovery from damaged media
+  - RAID array reconstruction
+
 - **Multiple User Interfaces**
   - Command-line interface (CLI)
   - Terminal-based UI (TUI)
@@ -63,6 +72,8 @@ This project is currently in the early development phase. We started with boot r
 - System reset and reinstallation for Windows, Linux, and Mac
 - Bootable USB creation for all major operating systems
 - Mac-specific tools for complete system wipe and recovery
+- Advanced system access recovery for locked devices
+- Extreme data recovery for damaged systems
 - Automated OS installation
 - Command-line interface
 - System information gathering

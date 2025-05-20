@@ -134,11 +134,13 @@ display_main_menu() {
     echo -e "  ${YELLOW}13.${NC} Mac-Specific Tools"
     echo -e "  ${YELLOW}14.${NC} Windows-Specific Tools"
     echo -e "  ${YELLOW}15.${NC} Linux-Specific Tools"
-    echo -e "  ${YELLOW}16.${NC} System Information"
-    echo -e "  ${YELLOW}17.${NC} Help and Documentation"
+    echo -e "  ${YELLOW}16.${NC} Advanced System Access Recovery"
+    echo -e "  ${YELLOW}17.${NC} Extreme Data Recovery"
+    echo -e "  ${YELLOW}18.${NC} System Information"
+    echo -e "  ${YELLOW}19.${NC} Help and Documentation"
     echo -e "  ${YELLOW}0.${NC} Exit"
     echo -e "${BLUE}============================================================${NC}"
-    echo -e "Enter your choice [0-17]: "
+    echo -e "Enter your choice [0-19]: "
 }
 
 # Function to handle boot diagnostics and repair
@@ -328,9 +330,35 @@ main() {
                 echo -e "${YELLOW}This feature is under development.${NC}"
                 ;;
             16)
-                gather_system_info
+                echo -e "${BLUE}Running Advanced System Access Recovery...${NC}"
+                echo -e "${RED}WARNING: These tools should only be used on systems you own or have permission to access.${NC}"
+                echo -e "${YELLOW}Do you want to continue? (yes/no):${NC}"
+                read CONTINUE
+
+                if [ "$CONTINUE" = "yes" ]; then
+                    # Call to advanced access recovery script
+                    source "${SCRIPT_DIR}/repair/advanced_recovery/advanced_access.sh"
+                else
+                    echo -e "${YELLOW}Advanced recovery cancelled.${NC}"
+                fi
                 ;;
             17)
+                echo -e "${BLUE}Running Extreme Data Recovery...${NC}"
+                echo -e "${RED}WARNING: These are last-resort methods for severely damaged systems.${NC}"
+                echo -e "${YELLOW}Do you want to continue? (yes/no):${NC}"
+                read CONTINUE
+
+                if [ "$CONTINUE" = "yes" ]; then
+                    # Call to extreme data recovery script
+                    source "${SCRIPT_DIR}/repair/advanced_recovery/extreme_data_recovery.sh"
+                else
+                    echo -e "${YELLOW}Extreme recovery cancelled.${NC}"
+                fi
+                ;;
+            18)
+                gather_system_info
+                ;;
+            19)
                 echo -e "${BLUE}Displaying help and documentation...${NC}"
                 # Display help information
                 echo -e "${CYAN}PC Repair Toolkit Help${NC}"
