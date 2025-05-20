@@ -128,14 +128,17 @@ display_main_menu() {
     echo -e "  ${YELLOW}7.${NC} Security and Malware Removal"
     echo -e "  ${YELLOW}8.${NC} Data Recovery and Backup"
     echo -e "  ${YELLOW}9.${NC} Application Troubleshooting"
-    echo -e "  ${YELLOW}10.${NC} Mac-Specific Tools"
-    echo -e "  ${YELLOW}11.${NC} Windows-Specific Tools"
-    echo -e "  ${YELLOW}12.${NC} Linux-Specific Tools"
-    echo -e "  ${YELLOW}13.${NC} System Information"
-    echo -e "  ${YELLOW}14.${NC} Help and Documentation"
+    echo -e "  ${YELLOW}10.${NC} System Reset and Reinstallation"
+    echo -e "  ${YELLOW}11.${NC} Create Bootable USB"
+    echo -e "  ${YELLOW}12.${NC} Automated OS Installation"
+    echo -e "  ${YELLOW}13.${NC} Mac-Specific Tools"
+    echo -e "  ${YELLOW}14.${NC} Windows-Specific Tools"
+    echo -e "  ${YELLOW}15.${NC} Linux-Specific Tools"
+    echo -e "  ${YELLOW}16.${NC} System Information"
+    echo -e "  ${YELLOW}17.${NC} Help and Documentation"
     echo -e "  ${YELLOW}0.${NC} Exit"
     echo -e "${BLUE}============================================================${NC}"
-    echo -e "Enter your choice [0-14]: "
+    echo -e "Enter your choice [0-17]: "
 }
 
 # Function to handle boot diagnostics and repair
@@ -258,27 +261,42 @@ main() {
                 echo -e "${YELLOW}This feature is under development.${NC}"
                 ;;
             10)
+                echo -e "${BLUE}Running System Reset and Reinstallation...${NC}"
+                # Call to system reset script
+                source "${SCRIPT_DIR}/repair/system_restore/system_reset.sh"
+                ;;
+            11)
+                echo -e "${BLUE}Creating Bootable USB...${NC}"
+                # Call to bootable USB creator script
+                source "${SCRIPT_DIR}/repair/system_restore/create_bootable_usb.sh"
+                ;;
+            12)
+                echo -e "${BLUE}Creating Automated OS Installation...${NC}"
+                # Call to automated OS installation script
+                source "${SCRIPT_DIR}/repair/system_restore/auto_install.sh"
+                ;;
+            13)
                 echo -e "${BLUE}Running Mac-specific tools...${NC}"
                 # Call to Mac-specific tools script
                 # source "${SCRIPT_DIR}/platforms/mac/mac_tools.sh"
                 echo -e "${YELLOW}This feature is under development.${NC}"
                 ;;
-            11)
+            14)
                 echo -e "${BLUE}Running Windows-specific tools...${NC}"
                 # Call to Windows-specific tools script
                 # source "${SCRIPT_DIR}/platforms/windows/windows_tools.sh"
                 echo -e "${YELLOW}This feature is under development.${NC}"
                 ;;
-            12)
+            15)
                 echo -e "${BLUE}Running Linux-specific tools...${NC}"
                 # Call to Linux-specific tools script
                 # source "${SCRIPT_DIR}/platforms/linux/linux_tools.sh"
                 echo -e "${YELLOW}This feature is under development.${NC}"
                 ;;
-            13)
+            16)
                 gather_system_info
                 ;;
-            14)
+            17)
                 echo -e "${BLUE}Displaying help and documentation...${NC}"
                 # Display help information
                 echo -e "${CYAN}PC Repair Toolkit Help${NC}"
