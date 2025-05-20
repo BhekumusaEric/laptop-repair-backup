@@ -40,6 +40,8 @@ The PC Repair Toolkit aims to be a one-stop solution for diagnosing and repairin
   - Bootable USB creation for various operating systems
   - Automated OS installation with unattended setup
   - Cross-platform support for Windows, macOS, and Linux
+  - Mac-specific tools for complete system wipe and recovery
+  - T2/Apple Silicon security chip handling
 
 - **Multiple User Interfaces**
   - Command-line interface (CLI)
@@ -58,8 +60,9 @@ This project is currently in the early development phase. We started with boot r
 
 ### Available Now
 - Boot diagnostics and repair for Linux systems
-- System reset and reinstallation
-- Bootable USB creation
+- System reset and reinstallation for Windows, Linux, and Mac
+- Bootable USB creation for all major operating systems
+- Mac-specific tools for complete system wipe and recovery
 - Automated OS installation
 - Command-line interface
 - System information gathering

@@ -262,13 +262,47 @@ main() {
                 ;;
             10)
                 echo -e "${BLUE}Running System Reset and Reinstallation...${NC}"
-                # Call to system reset script
-                source "${SCRIPT_DIR}/repair/system_restore/system_reset.sh"
+                echo -e "${CYAN}Select system type:${NC}"
+                echo -e "1. Windows/Linux System"
+                echo -e "2. Mac System"
+                echo -e "Enter your choice [1-2]: "
+                read reset_choice
+
+                case $reset_choice in
+                    1)
+                        # Call to general system reset script
+                        source "${SCRIPT_DIR}/repair/system_restore/system_reset.sh"
+                        ;;
+                    2)
+                        # Call to Mac-specific reset script
+                        source "${SCRIPT_DIR}/repair/system_restore/mac_reset.sh"
+                        ;;
+                    *)
+                        echo -e "${RED}Invalid choice. Returning to main menu.${NC}"
+                        ;;
+                esac
                 ;;
             11)
                 echo -e "${BLUE}Creating Bootable USB...${NC}"
-                # Call to bootable USB creator script
-                source "${SCRIPT_DIR}/repair/system_restore/create_bootable_usb.sh"
+                echo -e "${CYAN}Select system type:${NC}"
+                echo -e "1. Windows/Linux Bootable USB"
+                echo -e "2. Mac Bootable USB"
+                echo -e "Enter your choice [1-2]: "
+                read usb_choice
+
+                case $usb_choice in
+                    1)
+                        # Call to general bootable USB creator script
+                        source "${SCRIPT_DIR}/repair/system_restore/create_bootable_usb.sh"
+                        ;;
+                    2)
+                        # Call to Mac-specific bootable USB creator script
+                        source "${SCRIPT_DIR}/repair/system_restore/mac_bootable_usb.sh"
+                        ;;
+                    *)
+                        echo -e "${RED}Invalid choice. Returning to main menu.${NC}"
+                        ;;
+                esac
                 ;;
             12)
                 echo -e "${BLUE}Creating Automated OS Installation...${NC}"
