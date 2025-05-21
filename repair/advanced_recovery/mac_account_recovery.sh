@@ -184,10 +184,11 @@ main() {
         echo -e "2. Family Access After Death"
         echo -e "3. Bypass Screen Time & Restrictions"
         echo -e "4. Activation Lock Guidance"
-        echo -e "5. Advanced Activation Lock Bypass"
+        echo -e "5. Simple Activation Lock Removal (For Non-Technical Users)"
+        echo -e "6. Advanced Activation Lock Bypass (For Technical Users)"
         echo -e "0. Return to Main Menu"
         echo -e "${BLUE}============================================================${NC}"
-        echo -e "Enter your choice [0-5]: "
+        echo -e "Enter your choice [0-6]: "
         read CHOICE
 
         case $CHOICE in
@@ -204,6 +205,16 @@ main() {
                 activation_lock_guidance
                 ;;
             5)
+                # Run the Simple Activation Lock Removal script
+                if [ -f "$SCRIPT_DIR/mac_activation_simple.sh" ]; then
+                    bash "$SCRIPT_DIR/mac_activation_simple.sh"
+                else
+                    echo -e "${RED}Simple Activation Lock Removal script not found.${NC}"
+                    echo -e "${YELLOW}Please ensure mac_activation_simple.sh exists in the same directory.${NC}"
+                    sleep 3
+                fi
+                ;;
+            6)
                 # Run the Advanced Activation Lock Bypass script
                 if [ -f "$SCRIPT_DIR/mac_activation_bypass.sh" ]; then
                     bash "$SCRIPT_DIR/mac_activation_bypass.sh"
