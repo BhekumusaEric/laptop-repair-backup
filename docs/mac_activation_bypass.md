@@ -13,7 +13,9 @@ The Advanced Mac Activation Lock Bypass tool provides guidance for several scena
 1. **MDM-Based Activation Lock Bypass**: For enterprise/business-owned Mac devices enrolled in MDM
 2. **Apple Support Escalation Techniques**: Advanced methods for working with Apple Support
 3. **T2/Apple Silicon Recovery Techniques**: Technical approaches for newer Mac hardware
-4. **Professional Service Options**: When all other methods have failed
+4. **Older Mac Recovery Techniques**: Methods specifically for pre-2018 Macs
+5. **Hardware-Based Recovery Methods**: Last-resort approaches for persistent issues
+6. **Professional Service Options**: When all other methods have failed
 
 ## MDM-Based Activation Lock Bypass
 
@@ -100,6 +102,83 @@ For T2 and Apple Silicon Macs with Activation Lock:
 7. After restore, check if Activation Lock status has changed
 
 **WARNING**: These methods may not work in all cases and could result in data loss. They should only be attempted as a last resort.
+
+## Older Mac Recovery Techniques
+
+For older Macs (pre-2018) with Activation Lock:
+
+### Method 1: Internet Recovery Mode
+For Macs from 2010-2017:
+1. Shut down your Mac completely
+2. Turn on your Mac and immediately press and hold: Command (⌘) + Option + R
+3. Hold until you see a spinning globe and the message 'Starting Internet Recovery. This may take a while.'
+4. When Recovery Mode loads, select Disk Utility
+5. Erase your main drive completely (this will delete all data)
+6. Exit Disk Utility and select 'Reinstall macOS'
+7. Follow the installation process
+8. During setup, you may be able to skip the Activation Lock screen
+
+### Method 2: Single User Mode Approach
+For pre-T2 Macs (generally pre-2018):
+1. Shut down your Mac completely
+2. Turn on your Mac and immediately press and hold: Command (⌘) + S
+3. This boots into Single User Mode (text-only interface)
+4. At the prompt, type: '/sbin/fsck -fy' and press Enter
+5. Then type: '/sbin/mount -uw /' and press Enter
+6. Navigate to system folders containing activation records
+7. Use advanced commands to modify system files (requires expertise)
+8. Type 'reboot' to restart
+
+### Method 3: Target Disk Mode Approach
+For pre-T2 Macs with another Mac available:
+1. Connect both Macs with a Thunderbolt or FireWire cable
+2. On the locked Mac, shut down completely
+3. Turn on the locked Mac and immediately press and hold the T key
+4. Keep holding until you see the Thunderbolt or FireWire symbol
+5. The locked Mac now appears as an external drive on the working Mac
+6. Access and backup your data from the locked Mac
+7. Use Disk Utility on the working Mac to erase the locked Mac's drive
+8. Restart the previously locked Mac normally and reinstall macOS
+
+**WARNING**: These methods will result in data loss and may not work on all Mac models. Always backup data when possible before attempting.
+
+## Hardware-Based Recovery Methods
+
+For Macs with persistent Activation Lock issues:
+
+### Method 1: Logic Board Component Transfer (Last Resort)
+For older Macs (pre-2018) without T2 chip when all else fails:
+1. This method involves transferring the SSD to a non-locked logic board
+2. Requirements:
+   - A donor Mac of the same model with a working, non-locked logic board
+   - Technical expertise or professional repair service
+   - Specialized tools for Mac disassembly
+3. Process overview:
+   - Carefully disassemble both Macs
+   - Transfer the SSD from the locked Mac to the donor Mac
+   - Reassemble with the donor logic board and your original SSD
+   - Boot and recover your data
+
+### Method 2: NVRAM Reset Technique (Pre-T2 Macs)
+For older Macs without T2 chip or Apple Silicon:
+1. Shut down your Mac completely
+2. Turn on your Mac and immediately press and hold: Command (⌘) + Option + P + R
+3. Hold these keys for about 20 seconds
+4. Your Mac will appear to restart
+5. Release the keys after you hear the startup sound a second time
+6. Check if Activation Lock is still present after boot
+
+### Method 3: Recovery Partition Modification (Advanced)
+For pre-T2 Macs with technical expertise:
+1. Boot into Recovery Mode (Command+R at startup)
+2. Open Terminal from Utilities menu
+3. Use 'diskutil list' to identify your system volumes
+4. Mount the system volume if not already mounted
+5. Navigate to the activation record location
+6. Backup and then modify system files that store activation status
+7. Restart and check if Activation Lock is bypassed
+
+**WARNING**: These methods are extremely technical and may void warranty. They should only be attempted by professionals or as an absolute last resort when the device would otherwise be discarded. Data loss is possible.
 
 ## Professional Service Options
 
