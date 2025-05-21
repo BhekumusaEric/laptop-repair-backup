@@ -313,9 +313,30 @@ main() {
                 ;;
             13)
                 echo -e "${BLUE}Running Mac-specific tools...${NC}"
-                # Call to Mac-specific tools script
-                # source "${SCRIPT_DIR}/platforms/mac/mac_tools.sh"
-                echo -e "${YELLOW}This feature is under development.${NC}"
+                echo -e "${CYAN}Select Mac tool:${NC}"
+                echo -e "1. Mac System Reset"
+                echo -e "2. Mac Bootable USB Creation"
+                echo -e "3. Mac Account Recovery (iCloud/Family Access)"
+                echo -e "Enter your choice [1-3]: "
+                read mac_choice
+
+                case $mac_choice in
+                    1)
+                        # Call to Mac reset script
+                        source "${SCRIPT_DIR}/repair/system_restore/mac_reset.sh"
+                        ;;
+                    2)
+                        # Call to Mac bootable USB creator script
+                        source "${SCRIPT_DIR}/repair/system_restore/mac_bootable_usb.sh"
+                        ;;
+                    3)
+                        # Call to Mac account recovery script
+                        source "${SCRIPT_DIR}/repair/advanced_recovery/mac_account_recovery.sh"
+                        ;;
+                    *)
+                        echo -e "${RED}Invalid choice. Returning to main menu.${NC}"
+                        ;;
+                esac
                 ;;
             14)
                 echo -e "${BLUE}Running Windows-specific tools...${NC}"
